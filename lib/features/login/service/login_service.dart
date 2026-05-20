@@ -24,13 +24,18 @@ class LoginService {
         context,
         MaterialPageRoute(builder: (context) => UserPage()),
       );
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Succesfully Logged")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Successfully Logged")),
+      );
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Login Unsuccessful")));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login Unsuccessful")),
+      );
     }
+  }
+
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
   }
 }
