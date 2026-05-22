@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practicetask/features/users/view/user_page.dart';
 
 class LoginService {
   final formKey = GlobalKey<FormState>();
@@ -11,27 +10,18 @@ class LoginService {
     {"email": "abc@gmail.com", "password": "abc@12345"},
   ];
 
-  Future<void> loginFunction({
+  Future<String?> loginFunction({
     required String username,
     required String password,
-    required BuildContext context,
   }) async {
     bool userFound = loginDetails.any(
       (user) => user['email'] == username && user['password'] == password,
     );
     if (userFound) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => UserPage()),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Successfully Logged")),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Login Unsuccessful")),
-      );
+      final String loggedTime = DateTime.now().toIso8601String();
+      return loggedTime;
     }
+    return null;
   }
 
   void dispose() {
